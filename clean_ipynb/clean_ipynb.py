@@ -105,7 +105,9 @@ def clear_ipynb_output(ipynb_file_path):
 
 
 def clean_ipynb_cell(cell_dict, autoflake=False, tools_json=False):
-    autoflake = False # So that imports wont be removed and cause errors for future cells
+    autoflake = (
+        False
+    )  # So that imports wont be removed and cause errors for future cells
     # clean a single cell within a jupyter notebook
     if cell_dict["cell_type"] == "code":
         clean_lines = clean_python_code(
@@ -123,12 +125,10 @@ def clean_ipynb_cell(cell_dict, autoflake=False, tools_json=False):
         return cell_dict
 
 
-<<<<<<< HEAD
-def clean_ipynb(ipynb_file_path, clear_output=True, autoflake=True, tools_json=False):
-=======
 def clean_ipynb(ipynb_file_path, clear_output=False, autoflake=False, tools_json=False):
-    autoflake = False # So that imports wont be removed and cause errors for future cells
->>>>>>> 093d40675b7b49e536dbdc917c1a3afbbbe139b9
+    autoflake = (
+        False
+    )  # So that imports wont be removed and cause errors for future cells
     # load, clean and write .ipynb source in-place, back to original file
     if clear_output:
         clear_ipynb_output(ipynb_file_path)
@@ -162,4 +162,3 @@ def clean_py(py_file_path, autoflake=True, tools_json=False):
         "".join(source), tools_json=tools_json, autoflake=autoflake
     )
     create_file(Path(py_file_path), clean_lines + "\n")
-
